@@ -44,15 +44,6 @@ INSERT ALL
     INTO customers VALUES (3001, 'Brad Guzan', 'London', 300, 5005)
 SELECT 1 FROM DUAL;
 
--- Write an SQL statement to know which salesman are working for which customer.
-SELECT a.customer_name AS "Customer Name", a.city, b.salesman_name AS "Salesman", b.commission FROM customers a 
-INNER JOIN salesman b ON a.salesman_id=b.salesman_id;
-
--- Write an SQL statement to make a list of customers in ascending order with a salesman that have a grade less than 300
-SELECT a.customer_name, a.city, a.grade, b.salesman_name AS "Salesman", b.salesman_city FROM customers a 
-LEFT OUTER JOIN salesman b ON a.salesman_id=b.salesman_id WHERE a.grade<300 
-ORDER BY a.customer_id;
-
 -- Write a query to find all the orders issued against the salesman who may works for customer whose id is 3007.
 SELECT * FROM orders
 WHERE salesman_id=(SELECT DISTINCT salesman_id FROM orders WHERE customer_id=3007);
@@ -68,4 +59,5 @@ GROUP BY grade HAVING grade>(SELECT AVG(grade) FROM customers WHERE city='New Yo
 -- Write a query to extract the data from the orders table for those salesman who earned the maximum commission
 SELECT order_no, purchase_amount, order_date, salesman_id FROM orders
 WHERE salesman_id IN( SELECT salesman_id FROM salesman
+
 WHERE commission=( SELECT MAX(commission) FROM salesman));
