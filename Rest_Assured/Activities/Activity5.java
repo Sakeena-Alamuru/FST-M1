@@ -13,7 +13,7 @@ import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
 
 	
-	
+	@ExtendWith(PactConsumerTestExt.class)
 	public class Activity5 {
 	    // Create the contract(Pact)
 	    @Pact(consumer = "UserConsumer", provider = "UserProvider")
